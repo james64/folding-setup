@@ -28,7 +28,7 @@
         dest: /etc/sudoers
         state: present
         regexp: "^{{ uname }}"
-        line: "{{ uname }} ALL=(ALL) NOPASSWD: ALL"
+        line: "{{ uname }} ALL=(ALL) ALL"
         validate: 'visudo -cf %s'
 
     - name: start and enable sshd
