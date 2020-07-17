@@ -1,0 +1,22 @@
+- name: Non root user setup
+  hosts: folding
+  user: dubovsky
+  tasks:
+
+    - name: download neovim
+      shell: |
+        if [[ ! -e /home/dubovsky/.local/bin/nvim ]] ; then
+          curl -o /home/dubovsky/.local/bin/nvim -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+        fi
+        chmod u+x /home/dubovsky/.local/bin/nvim
+
+    - name: create neovim config dir
+      file:
+        path: /home/dubovsky/.config/nvim
+        state: directory
+
+    - name: upload neovim init file
+      copy:
+        src: /home/dubovsky/.config/nvim/init.vim
+        dest: /home/dubovsky/.config/nvim/init.vim
+

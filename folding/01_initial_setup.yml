@@ -1,6 +1,7 @@
 - name: Non-root user can ssh connect
   hosts: folding
-  user: root
+  user: dubovsky
+  become: yes
   vars:
     uname: dubovsky
   tasks:
@@ -21,6 +22,9 @@
         name:
           - sudo
           - openssh
+          - curl
+          - fuse
+          - fuse-libs
         state: latest
 
     - name: passwordless sudo for user
